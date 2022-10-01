@@ -6,7 +6,7 @@ import random
 
 # chosen_delvers = random.sample(delvers, 8)
 
-gs = generate_start_game_state(challenges, delvers, width=6, height=6, supplies=30)
+gs = generate_start_game_state(challenges, delvers, width=7, height=7, supplies=200)
 game = Game(gs)
 
 game.play()

@@ -36,9 +36,9 @@ tedonae_the_archer = Delver(
 hadrian_the_strategist = Delver(
     "Hadrian the Strategist",
     DelverStats(0, 6, 0, 0, 1, 2),
-    Ability([AC(target.all_assigned, [mod_stat(2, 'mental')])], conditions=[available]),
-    Ability([AC(target.all_assigned, [mod_stat(3, 'mental')])]),
-    low_stat_assigned,
+    follower_ability=Ability([AC(target.all_assigned, [mod_stat(2, 'mental')])], conditions=[available]),
+    leader_ability=Ability([AC(target.all_assigned, [mod_stat(3, 'mental')])]),
+    bonding_targeter=low_stat_assigned,
     flavor="'Listen up comrades, here's the plan...'"
 )
 
@@ -77,10 +77,10 @@ eve_the_firebrand = Delver(
     DelverStats(3, 2, 0, 0, 2, 1),
     follower_ability=Ability([AC(target.all_exhausted, [mod_stat(1, 'morale')])], conditions=[assigned]),
     leader_ability=Ability([
-        AC(target.random_exhausted, [mod_stat(2, 'morale')]),
+        AC(target.random_exhausted, [mod_stat(3, 'morale')]), # TODO: this should scale with # of assignees
     ]),
     bonding_targeter=fellow_assigned,
-    flavor="'Pick yourself up! I'm not going to let them do all the fighting, are you?!"
+    flavor="'Pick yourself up! You're not gonna let me do this alone are you?'"
 )
 
 delvers = [

@@ -1,5 +1,5 @@
 from view.TextView import render_game_state, challenge_to_string
-from content.targeters import choose_available, choose_accessible_location
+from content.targeters import choose_available, choose_assigned, choose_accessible_location
 # from utils.generation import
 from model.Party import Party
 
@@ -23,7 +23,7 @@ class Game:
     def _resolve_expedition_end(self):
         self.game_state.party = Party([], 0)
         self.game_state.embarked = False
-        self.game_state.add_delvers_to_resource_pool(2)
+        self.game_state.add_delvers_to_resource_pool(3)
         for challenge in self.game_state.challenges:
             if challenge.name != 'Inactive Area': challenge.active = True
 
@@ -105,22 +105,30 @@ class Game:
     def _embarking_phase(self):
         while True:
             self.render()
-            command = input("recruit, supply, or done")
+            command = input("recruit, supply, or done: ")
             command_tokens = command.split(' ')
-            if command_tokens[0] == "recruit":
+            command_root = command_tokens[0]
+            command_arguments = command_tokens[1:]
+            if command_root == "recruit":
                 # TODO limit party size
-                i = int(command_tokens[1]) - 1
+                if command_arguments == []:
+                    print(f"Must provide the # of the Delver to recruit, like `recruit 3`")
+                    continue
+                i = int(command_arguments[0]) - 1
                 available_delvers = self.game_state.starting_resources.delvers
                 chosen_delver = available_delvers.pop(i)
                 self.game_state.party.members.append(chosen_delver)
                 self.game_state.party.magic += chosen_delver.stats.magic
                 self.game_state.party.supplies += chosen_delver.stats.supplies
-            if command_tokens[0] == "supply":
+            if command_root == "supply":
                 # TODO make sure they can't go negative on taking supply
-                amount = int(command_tokens[1])
+                if command_arguments == []:
+                    print(f"Must provide the amount of supply to bring, like `supply 3`")
+                    continue
+                amount = int(command_arguments[0])
                 self.game_state.party.supplies += amount
                 self.game_state.starting_resources.supplies -= amount
-            if command == "done":
+            if command_root == "done":
                 print("Ok, embarking! Choose your starting leader.")
                 new_leader = choose_available(self.game_state)[0]
                 new_leader.lead()
@@ -132,12 +140,15 @@ class Game:
         while True:
             self.render()
             print("GAME: The Challenge is still active, you must deal with it!")
-            command = input("assign, map, or done: ")
+            command = input("assign, unassign, map, or done: ")
             if command == "assign":
                 delver = choose_available(self.game_state)[0]
                 delver.assign()
+            if command == "unassign":
+                delver = choose_assigned(self.game_state)[0]
+                delver.assigned = False
             if command == "map":
-                coordinates_raw = input("Enter coordinates separated by a comma like so: 1,2")
+                coordinates_raw = input("Enter coordinates separated by a comma like so: 1,2: ")
                 coordinates = coordinates_raw.split(',')
                 x, y = (int(coordinates[0]), int(coordinates[1]))
                 challenge = self.game_state.layout[x][y]
@@ -167,7 +178,14 @@ class Game:
                 new_leader.lead()
                 self._resolve_rest()
                 break
-        self.game_state.party.supplies -= 1
+            if command == "map":
+                coordinates_raw = input("Enter coordinates separated by a comma like so: 1,2: ")
+                coordinates = coordinates_raw.split(',')
+                x, y = (int(coordinates[0]), int(coordinates[1]))
+                challenge = self.game_state.layout[x][y]
+                print(challenge_to_string(challenge) if challenge.revealed else "---- HIDDEN ----")
+                self.prompt()
+        self.game_state.party.supplies -= len(m for m in self.game_state.party.members if not m.dead)
 
     # -------- M A I N   L O O P -------- #
 

@@ -23,7 +23,7 @@ def generate_layout(challenges, width=3, height=3):
 def generate_delver_pool(delvers, n=3):
     return delvers  # TODO change this
 
-def generate_start_game_state(challenges, delvers, width=3, height=3, supplies=30):
+def generate_start_game_state(challenges, delvers, width=3, height=3, supplies=200):
     layout = generate_layout(challenges, width=width, height=height)
     game_state = GameState(layout, Party([], 0), delvers, supplies)
     return game_state

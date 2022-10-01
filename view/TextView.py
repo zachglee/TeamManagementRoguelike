@@ -28,7 +28,7 @@ def challenge_to_string(challenge):
 
 def layout_to_string(layout, party_location):
     def to_symbol(challenge):
-        return 'X' if challenge.overcome else '?' if not challenge.revealed else '-' if not challenge.active else '+'
+        return 'X' if challenge.impassible else '?' if not challenge.revealed else '-' if not challenge.active else '+'
     x, y = party_location
     symbol_layout = [[to_symbol(challenge) for challenge in row] for row in layout]
     symbol_layout[x][y] = 'P'

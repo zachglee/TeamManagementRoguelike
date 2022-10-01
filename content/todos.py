@@ -1,4 +1,19 @@
 
+# Coming back to this!
+# - make enemy design more spiky so that enemies really ask certain things of you
+# - make delver abilities change more between follower / leader so that choice matters more
+
+# Playtest Notes
+# - Ok so overall having leaders that that stat boost is really good
+# - having morale engines is good. And there's only so many of those I can make
+# - You should consider putting everyone in leader role eventually
+# - I need more things to push leaders out then?
+# - Using info from past runs and choosing route wasn't really a thing.
+# - I should make it 50% chance that route becomes impassible?
+# - Bonds should feel more significant -- they can give stat boosts maybe?
+# - maybe more monsters should actually be harder to defeat?
+# - maybe party size should be slightly bigger? Ok I just made it optional and it just takes different amounts of supply
+
 # Content:
 # TODO also just implement more enemies and delvers
 # TODO also another low-hanging fruit -- implement modification of challenge physical/mental

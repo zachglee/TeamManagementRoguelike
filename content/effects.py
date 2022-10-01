@@ -2,7 +2,15 @@
 # They are targets->side effects
 # Different kinds of effects will have different kinds of targets so we have to be mindful
 
+# ------- dynamically determined values
+
+# delver_durability = lambda target_delvers: sum([d.stats.durability for d in target_delvers])
+# delver_damage = lambda target_delvers: sum([d.stats.damage for d in target_delvers])
+# delver_recovery_morale = lambda target_delvers: sum([d.stats.recovery_morale for d in target_delvers])
+# delver_morale = lambda target_delvers: sum([d.stats.morale for d in target_delvers])
+
 # ------- Effects targeting delvers
+
 
 def mod_stat(amount, stat_key):
     def effect(target_delvers):

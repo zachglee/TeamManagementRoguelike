@@ -13,7 +13,11 @@ def _target_choice(choices, choice_name="choices"):
     while True:
         print(f"The current {choice_name} are:")
         [print(f"{i+1}:{choice}") for i, choice in zip(range(0, len(choices)), choices)]
-        i = int(input("\n Choose one by index:")) - 1
+        user_choice = input("\n Choose one by index: ")
+        if not user_choice.isnumeric():
+            print(f"Input must be a valid number.")
+            continue
+        i = int(user_choice) - 1
         if i in range(0, len(choices)):
             return [choices[i]]
 
@@ -44,6 +48,12 @@ def all_(get_delvers, other=False):
         return delvers
     return t
 
+def not_(targeter):
+    def t(game_state, source=None):
+        original_delvers = targeter(game_state, source=source)
+        return [d for d in game_state.party.members if d not in original_delvers]
+    return t
+
 
 
 # -------- D E L V E R   T A R G E T E R S -------- #
@@ -60,25 +70,28 @@ random_exhausted = random_(lambda g: g.party.exhausted())
 random_assigned = random_(lambda g: g.party.assigned())
 random_available = random_(lambda g: g.party.available())
 random_damaged = random_(lambda g: [member for member in g.party.members if member.damaged()])
-random_member = random_(lambda g: g.party.member)
+random_nonleader = random_(lambda g: [member for member in g.party.members if not member.leader])
+random_member = random_(lambda g: g.party.members)
 
 random_other_exhausted = random_(lambda g: g.party.exhausted(), other=True)
 random_other_assigned = random_(lambda g: g.party.assigned(), other=True)
 random_other_available = random_(lambda g: g.party.available(), other=True)
 random_other_damaged = random_(lambda g: [member for member in g.party.members if member.damaged()], other=True)
-random_member = random_(lambda g: g.party.member, other=True)
+random_member = random_(lambda g: g.party.members, other=True)
 
 all_exhausted = all_(lambda g: g.party.exhausted())
 all_assigned = all_(lambda g: g.party.assigned())
 all_available = all_(lambda g: g.party.available())
 all_damaged = all_(lambda g: [member for member in g.party.members if member.damaged()])
-all_member = all_(lambda g: g.party.member)
+all_member = all_(lambda g: g.party.members)
 
 all_other_exhausted = all_(lambda g: g.party.exhausted(), other=True)
 all_other_assigned = all_(lambda g: g.party.assigned(), other=True)
 all_other_available = all_(lambda g: g.party.available(), other=True)
 all_other_damaged = all_(lambda g: [member for member in g.party.members if member.damaged()], other=True)
-all_other_member = all_(lambda g: g.party.member, other=True)
+all_other_member = all_(lambda g: g.party.members, other=True)
+
+
 
 def choose_exhausted(game_state, source=None):
     choices = game_state.party.exhausted()
@@ -104,7 +117,7 @@ def choose_accessible_location(game_state, source=None):
 
     adjacents = [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
     real_adjacents = [l for l in adjacents if in_bounds(l[0], l[1])]
-    accessible_adjacents = [l for l in real_adjacents if not game_state.layout[l[0]][l[1]].overcome]
+    accessible_adjacents = [l for l in real_adjacents if not game_state.layout[l[0]][l[1]].impassible]
     return _target_choice(accessible_adjacents, choice_name="accesssible locations")
 
 # -------- P A R T Y   T A R G E T E R S -------- #

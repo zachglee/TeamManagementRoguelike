@@ -1,3 +1,6 @@
+import random
+
+
 class Challenge:
     def __init__(self,
                  name,
@@ -11,6 +14,7 @@ class Challenge:
                  revealed=False):
         # status
         self.overcome = overcome
+        self.impassible = overcome
         self.active = active
         self.revealed = revealed
         # main
@@ -38,6 +42,10 @@ class Challenge:
     def mark_overcome(self):
         print(f"--- {self.name} was overcome! ---")
         self.overcome = True
+        becomes_impassible = random.choice([True, False])
+        if becomes_impassible:
+            print(f"--- {self.name} becomes impassible! ---")
+            self.impassible = True
 
     def execute_overcome_ability(self, game_state):
         self.overcome_ability.execute(game_state, source=self)

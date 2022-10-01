@@ -37,7 +37,7 @@ import content.delvers.lestes as lestes
 
 # ashka_the_prince = Delver(
 #     "Ashka the Prince",
-#     DelverStats(1, 1, 1, 1, 1, 1, supplies=2),
+#     DelverStats(1, 1, 1, 1, 1, 1, supplies=10),
 #     Ability([AC(target.self, [])]),
 #     Ability([AC(target.self, [mod_stat(1, 'morale')])])
 # )

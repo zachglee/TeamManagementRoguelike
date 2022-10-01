@@ -25,6 +25,9 @@ def coin_flip(game_state, source=None):
 def challenge_overcome(game_state, source=None):
     return game_state.current_challenge.overcome
 
+def challenge_impassible(game_state, source=None):
+    return game_state.current_challenge.impassible
+
 def solo_assigned(game_state, source=None):
     return len(game_state.party.assigned()) == 1
 
