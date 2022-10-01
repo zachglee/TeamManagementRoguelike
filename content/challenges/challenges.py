@@ -26,7 +26,7 @@ marrow_bruiser = Challenge(
     Ability([
         AC(target.leader, [mod_stat(3, "damage")]),
     ]),
-    7, 0,
+    9, 0,
     exhaust_overcome,
 )
 
@@ -36,7 +36,7 @@ marrow_horror = Challenge(
     Ability([
         AC(target.leader, [mod_stat(-5, "morale")]),
     ]),
-    2, 5,
+    3, 6,
     exhaust_overcome,
 )
 
@@ -46,7 +46,7 @@ marrow_hunter = Challenge(
     Ability([
         AC(target.random_nonleader, [set_stat(3, "damage")]),
     ]),
-    4, 3,
+    5, 5,
     exhaust_overcome
 )
 
@@ -58,7 +58,7 @@ marrow_goliath = Challenge(
         AC(target.all_available, [mod_stat(-1, "morale"), mod_stat(1, "damage")]),
         AC(target.leader, [mod_stat(-1, "morale"), mod_stat(1, "damage")]),
     ]),
-    8, 2,
+    10, 2,
     Ability([
         AC(target.all_assigned, [exhaust]),
         AC(target.random_assigned, [mod_stat(2, "base_physical")])
@@ -71,7 +71,7 @@ abja_thief = Challenge(
     Ability([
         AC(target.party, [mod_resource(-7, "supplies")]),
     ]),
-    4, 2,
+    5, 2,
     exhaust_overcome
 )
 
@@ -81,7 +81,7 @@ abja_trapmaster = Challenge(
     Ability([
         AC(target.random_member, [exhaust, mod_stat(1, 'damage')]),
     ]),
-    1, 5,
+    1, 6,
     exhaust_overcome,
 )
 
@@ -91,7 +91,7 @@ abja_assassin = Challenge(
     Ability([
         AC(target.random_exhausted, [mod_stat(4, 'damage')])
     ]),
-    3, 3,
+    3, 4,
     exhaust_overcome
 )
 
@@ -101,7 +101,7 @@ abja_horde = Challenge(
     Ability([
         AC(target.leader, [exhaust, mod_stat(-2, 'morale')]),
     ]),
-    5, 5,
+    6, 6,
     Ability([
         AC(target.all_assigned, [exhaust]),
         AC(target.party, [mod_resource(4, 'supplies')]),
@@ -114,7 +114,7 @@ watcher_crippler = Challenge(
     Ability([
         AC(target.leader, [mod_stat(-2, 'base_physical'), mod_stat(-2, 'base_mental')])
     ]),
-    0, 7,
+    0, 9,
     exhaust_overcome,
 )
 
@@ -124,7 +124,7 @@ watcher_deathblade = Challenge(
     Ability([
         AC(target.leader, [mod_stat(-2, 'durability')])
     ]),
-    3, 4,
+    4, 5,
     exhaust_overcome
 )
 
@@ -134,7 +134,7 @@ watcher_hexmage = Challenge(
     Ability([
         AC(target.all_member, [mod_stat(-2, 'morale')]),
     ]),
-    2, 5,
+    3, 6,
     exhaust_overcome
 )
 
@@ -144,7 +144,7 @@ watcher_mindcrusher = Challenge(
     Ability([
         AC(target.random_member, [set_stat(-1, "morale"), mod_stat(2, "recovery_morale")])
     ]),
-    2, 8,
+    2, 10,
     Ability([
         AC(target.all_assigned, [exhaust]),
         AC(target.random_assigned, [mod_stat(-1, 'recovery_morale')]),
