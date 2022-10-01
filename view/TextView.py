@@ -12,7 +12,8 @@ def delver_to_string(delver):
             f"    P/M: {delver.stats.physical}/{delver.stats.mental}, "
             f"Morale: {delver.stats.morale}/{delver.recovery_morale}, "
             f"Damage: {delver.stats.damage}/{delver.stats.durability}\n"
-            f"    Bonds: {[b.name for b in delver.bonds]}")
+            f"    Bonds: {[b.name for b in delver.bonds]}\n"
+            f"    {delver.flavor}")
 
 def party_to_string(party):
     acc = f"******** Location: {party.location}, Supplies: {party.supplies}, Magic: {party.magic} ********"
@@ -48,7 +49,7 @@ def render_game_state(game_state):
         delvers = game_state.starting_resources.delvers
         pool = f"******** Supply Pool: {game_state.starting_resources.supplies} ********"
         for delver, i in zip(delvers, range(len(delvers))):
-            pool += f"\n{i+1}: {delver_to_string(delver)}"
+            pool += f"\n{i+1}: {delver_to_string(delver)}\n"
 
         party = party_to_string(game_state.party)
         print_side_by_side(party, pool)

@@ -24,17 +24,19 @@ yuri_the_unbreakable = Delver(
 yara_the_unwavering = Delver(
     "Yara the Unwavering",
     DelverStats(2, 3, 6, 0, 2, 2, supplies=1),
-    Ability([AC(target.random_other_available, [mod_stat(1, 'morale')])]),
-    Ability([AC(target.random_available, [mod_stat(1, 'morale')])]),
-    bonds.leader_when_endure,
+    follower_ability=Ability([AC(target.random_other_available, [mod_stat(1, 'morale')])]),
+    leader_ability=Ability([AC(target.random_available, [mod_stat(1, 'morale')])]),
+    bonding_targeter=bonds.leader_when_endure,
+    flavor="''"
 )
 
 samiya_the_healer = Delver(
     "Samiya the Healer",
     DelverStats(0, 6, 1, 0, 1, 2),
-    Ability([AC(target.random_damaged, [mod_stat(-1, 'damage')])], conditions=[available]),
-    Ability([AC(target.random_damaged, [set_stat(0, 'damage'), set_stat(2, 'morale')])]),
-    bonds.leader_when_endure,
+    follower_ability=Ability([AC(target.random_damaged, [mod_stat(-1, 'damage')])], conditions=[available]),
+    leader_ability=Ability([AC(target.random_damaged, [set_stat(0, 'damage'), set_stat(2, 'morale')])]),
+    bonding_targeter=bonds.leader_when_endure,
+    flavor="'Rest now, my child. Let your wounds heal.'"
 )
 
 kanaan_the_survivalist = Delver(

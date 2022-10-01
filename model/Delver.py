@@ -25,7 +25,7 @@ class DelverStats:
 
 
 class Delver:
-    def __init__( self, name, stats, follower_ability, leader_ability, bonding_targeter):
+    def __init__( self, name, stats, follower_ability, leader_ability, bonding_targeter, flavor=""):
         self.leader = False
         self.assigned = False
         self.exhausted = False
@@ -37,6 +37,7 @@ class Delver:
         self.follower_ability = follower_ability
         self.leader_ability = leader_ability
         self.bonding_targeter = bonding_targeter
+        self.flavor = flavor
 
     def __repr__(self):
         return self.name

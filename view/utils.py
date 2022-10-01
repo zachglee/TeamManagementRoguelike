@@ -13,7 +13,7 @@ def box_format(s, width=10, height=4):
     else:
         return '\n'.join(wrapped_s_lines)
 
-def print_side_by_side(a, b, size=50, space=4):
+def print_side_by_side(a, b, size=75, space=4):
 
     a_lines = a.split('\n')
     b_lines = b.split('\n')
