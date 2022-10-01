@@ -69,27 +69,27 @@ def leader(game_state, source=None):
 random_exhausted = random_(lambda g: g.party.exhausted())
 random_assigned = random_(lambda g: g.party.assigned())
 random_available = random_(lambda g: g.party.available())
-random_damaged = random_(lambda g: [member for member in g.party.members if member.damaged()])
-random_nonleader = random_(lambda g: [member for member in g.party.members if not member.leader])
-random_member = random_(lambda g: g.party.members)
+random_damaged = random_(lambda g: [member for member in g.party.alive_members() if member.damaged()])
+random_nonleader = random_(lambda g: [member for member in g.party.alive_members() if not member.leader])
+random_member = random_(lambda g: g.party.alive_members())
 
 random_other_exhausted = random_(lambda g: g.party.exhausted(), other=True)
 random_other_assigned = random_(lambda g: g.party.assigned(), other=True)
 random_other_available = random_(lambda g: g.party.available(), other=True)
-random_other_damaged = random_(lambda g: [member for member in g.party.members if member.damaged()], other=True)
-random_member = random_(lambda g: g.party.members, other=True)
+random_other_damaged = random_(lambda g: [member for member in g.party.alive_members() if member.damaged()], other=True)
+random_other_member = random_(lambda g: g.party.alive_members(), other=True)
 
 all_exhausted = all_(lambda g: g.party.exhausted())
 all_assigned = all_(lambda g: g.party.assigned())
 all_available = all_(lambda g: g.party.available())
-all_damaged = all_(lambda g: [member for member in g.party.members if member.damaged()])
-all_member = all_(lambda g: g.party.members)
+all_damaged = all_(lambda g: [member for member in g.party.alive_members() if member.damaged()])
+all_member = all_(lambda g: g.party.alive_members())
 
 all_other_exhausted = all_(lambda g: g.party.exhausted(), other=True)
 all_other_assigned = all_(lambda g: g.party.assigned(), other=True)
 all_other_available = all_(lambda g: g.party.available(), other=True)
-all_other_damaged = all_(lambda g: [member for member in g.party.members if member.damaged()], other=True)
-all_other_member = all_(lambda g: g.party.members, other=True)
+all_other_damaged = all_(lambda g: [member for member in g.party.alive_members() if member.damaged()], other=True)
+all_other_member = all_(lambda g: g.party.alive_members(), other=True)
 
 
 

@@ -9,7 +9,7 @@ def delver_to_string(delver):
     if delver.assigned: statuses.append("Assigned")
     if delver.dead: statuses.append("DEAD")
     return (f"  ------ {delver.name} ({','.join(statuses)}) ------\n"
-            f"    P/M: {delver.stats.physical}/{delver.stats.mental}, "
+            f"    P/M: {delver.physical}/{delver.mental}, "
             f"Morale: {delver.stats.morale}/{delver.recovery_morale}, "
             f"Damage: {delver.stats.damage}/{delver.stats.durability}\n"
             f"    Bonds: {[b.name for b in delver.bonds]}\n"
@@ -17,8 +17,8 @@ def delver_to_string(delver):
 
 def party_to_string(party):
     acc = f"******** Location: {party.location}, Supplies: {party.supplies}, Magic: {party.magic} ********"
-    for member in party.members:
-        acc += f"\n{delver_to_string(member)}"
+    for member in party.alive_members():
+        acc += f"\n{delver_to_string(member)}\n"
     return acc
 
 def challenge_to_string(challenge):

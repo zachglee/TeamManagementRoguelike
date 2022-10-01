@@ -44,6 +44,7 @@ class Game:
             delver.assigned = False
             delver.stats.physical = delver.stats.base_physical
             delver.stats.mental = delver.stats.base_mental
+            delver.stats.recovery_morale = max(0, delver.stats.recovery_morale)
             if delver.should_exhaust():
                 delver.exhaust()
             if delver.should_inspire():
@@ -162,7 +163,7 @@ class Game:
         while True:
             self.render()
             print("GAME: The challenge here has been dealt with for now.")
-            command = input("travel or rest: ")
+            command = input("travel, rest, or map: ")
             if command == "travel":
                 if self.game_state.party.leader():
                     location = choose_accessible_location(self.game_state)[0]
@@ -185,7 +186,7 @@ class Game:
                 challenge = self.game_state.layout[x][y]
                 print(challenge_to_string(challenge) if challenge.revealed else "---- HIDDEN ----")
                 self.prompt()
-        self.game_state.party.supplies -= len(m for m in self.game_state.party.members if not m.dead)
+        self.game_state.party.supplies -= len([m for m in self.game_state.party.members if not m.dead])
 
     # -------- M A I N   L O O P -------- #
 

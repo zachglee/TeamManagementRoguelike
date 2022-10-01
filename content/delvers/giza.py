@@ -65,7 +65,8 @@ maya_the_scavenger = Delver(
         AC(target.random_available, [exhaust]),
         AC(target.party, [mod_resource(5, 'supplies')])
     ]),
-    bonding_targeter=bonds.fellow_available
+    bonding_targeter=bonds.fellow_available,
+    flavor="'I found something!'"
 )
 
 delvers = [

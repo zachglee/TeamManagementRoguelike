@@ -13,6 +13,7 @@
 # - Bonds should feel more significant -- they can give stat boosts maybe?
 # - maybe more monsters should actually be harder to defeat?
 # - maybe party size should be slightly bigger? Ok I just made it optional and it just takes different amounts of supply
+# - I think I still need to lean more into 
 
 # Content:
 # TODO also just implement more enemies and delvers

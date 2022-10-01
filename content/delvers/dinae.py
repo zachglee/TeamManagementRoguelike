@@ -64,7 +64,7 @@ jayden_the_trooper = Delver(
     follower_ability=Ability([AC(target.self, [recover, mod_stat(-1, 'morale')], conditions=[exhausted])]),
     leader_ability=Ability([AC(target.random_exhausted, [recover, mod_stat(-2, 'morale')])]),
     bonding_targeter=bonds.fellow_assigned,
-    flavor="'Pick yourself up. I'm not gonna let them fight alone. Are you?'"
+    flavor="'I can rest when I'm dead. They need my help now.'"
 )
 
 delvers = [

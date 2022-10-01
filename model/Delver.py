@@ -1,3 +1,6 @@
+import random
+
+
 class DelverStats:
     def __init__(self,
                  base_physical,
@@ -50,6 +53,33 @@ class Delver:
         if any([delver.leader for delver in self.bonds]):
             recovery_morale -= 1
         return recovery_morale
+
+    @property
+    def primary_stat(self):
+        if self.stats.base_physical > self.stats.base_mental:
+            return "physical"
+        elif self.stats.base_mental > self.stats.base_physical:
+            return "mental"
+        else:
+            return random.choice(["physical", "mental"])
+
+    @property
+    def physical(self):
+        physical = self.stats.physical
+        if any([delver.leader for delver in self.bonds]):
+            leader_primary_stat = [d for d in self.bonds if d.leader][0].primary_stat
+            if leader_primary_stat == "physical":
+                physical += 1
+        return physical
+
+    @property
+    def mental(self):
+        mental = self.stats.mental
+        if any([delver.leader for delver in self.bonds]):
+            leader_primary_stat = [d for d in self.bonds if d.leader][0].primary_stat
+            if leader_primary_stat == "mental":
+                mental += 1
+        return mental
 
     def should_die(self):
         return (self.stats.damage > (2 * self.stats.durability)

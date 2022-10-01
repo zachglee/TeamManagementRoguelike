@@ -22,6 +22,9 @@ class Party:
 
     def available(self):
         return [m for m in self.members if not m.leader and not m.exhausted and not m.assigned and not m.dead]
+    
+    def alive_members(self):
+        return [m for m in self.members if not m.dead]
 
     # -------- M U T A T I N G    H E L P E R S -------- #
 

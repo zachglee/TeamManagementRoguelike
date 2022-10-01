@@ -22,7 +22,7 @@ inactive_area = Challenge(
 
 marrow_bruiser = Challenge(
     "Marrow Bruiser",
-    "Deals damage to leader. Overcome 7/0",
+    "Deals 3 damage to leader. Overcome 7/0",
     Ability([
         AC(target.leader, [mod_stat(3, "damage")]),
     ]),
@@ -32,9 +32,9 @@ marrow_bruiser = Challenge(
 
 marrow_horror = Challenge(
     "Marrow Horror",
-    "Deals morale to leader. Overcome 2/5",
+    "-5 morale to leader. Overcome 2/5",
     Ability([
-        AC(target.leader, [mod_stat(-4, "morale")]),
+        AC(target.leader, [mod_stat(-5, "morale")]),
     ]),
     2, 5,
     exhaust_overcome,
@@ -87,9 +87,9 @@ abja_trapmaster = Challenge(
 
 abja_assassin = Challenge(
     "Abja Assassin",
-    "Deals 3 damage to random exhausted",
+    "Deals 4 damage to random exhausted",
     Ability([
-        AC(target.random_exhausted, [mod_stat(3, 'damage')])
+        AC(target.random_exhausted, [mod_stat(4, 'damage')])
     ]),
     3, 3,
     exhaust_overcome
@@ -130,10 +130,9 @@ watcher_deathblade = Challenge(
 
 watcher_hexmage = Challenge(
     "Watcher Hexmage",
-    "Everyone loses 1 morale. leader loses more",
+    "Everyone loses 2 morale.",
     Ability([
-        AC(target.leader, [mod_stat(-2, 'morale')]),
-        AC(target.all_available, [mod_stat(-2, 'morale')]),
+        AC(target.all_member, [mod_stat(-2, 'morale')]),
     ]),
     2, 5,
     exhaust_overcome
@@ -141,9 +140,9 @@ watcher_hexmage = Challenge(
 
 watcher_mindcrusher = Challenge(
     "Watcher Mindcrusher",
-    "Random member set morale to 0 and increase recovery morale by 2",
+    "Random member set morale to -1 and increase recovery morale by 2",
     Ability([
-        AC(target.random_member, [set_stat(0, "morale"), mod_stat(2, "recovery_morale")])
+        AC(target.random_member, [set_stat(-1, "morale"), mod_stat(2, "recovery_morale")])
     ]),
     2, 8,
     Ability([

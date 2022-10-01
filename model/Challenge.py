@@ -34,8 +34,8 @@ class Challenge:
 
     def is_overcome_by(self, game_state):
         assigned = game_state.party.assigned()
-        assigned_physical = sum([delver.stats.physical for delver in assigned])
-        assigned_mental = sum([delver.stats.mental for delver in assigned])
+        assigned_physical = sum([delver.physical for delver in assigned])
+        assigned_mental = sum([delver.mental for delver in assigned])
         return assigned_physical >= self.required_physical and assigned_mental >= self.required_mental
 
     # TODO find a better name

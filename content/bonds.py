@@ -27,7 +27,7 @@ leader_when_endure = target.if_([c.not_(c.leader), c.none_assigned, c.chance_(0.
 def high_stat_assigned(game_state, source=None):
     if random.random() > 0.5:
         return [delver for delver in game_state.party.assigned()
-                if delver.stats.physical + delver.stats.mental >= 10]
+                if delver.physical + delver.mental >= 10]
     else:
         return []
 
