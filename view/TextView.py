@@ -1,12 +1,20 @@
 from view.utils import print_side_by_side
 
+# -------- C O L O R S -------- #
+
+class bcolors:
+    GREEN = '\033[32m'
+    RED = '\033[31m'
+    YELLOW = '\033[33m'
+    ENDC = '\033[0m'
+
 # -------- H E L P E R S -------- #
 
 def delver_to_string(delver):
     statuses = []
-    if delver.leader: statuses.append("Leader")
-    if delver.exhausted: statuses.append("Exhausted")
-    if delver.assigned: statuses.append("Assigned")
+    if delver.leader: statuses.append(f"{bcolors.GREEN}Leader{bcolors.ENDC}       ")
+    if delver.exhausted: statuses.append(f"{bcolors.RED}Exhausted{bcolors.ENDC}       ")
+    if delver.assigned: statuses.append(f"{bcolors.YELLOW}Assigned{bcolors.ENDC}       ")
     if delver.dead: statuses.append("DEAD")
     return (f"  ------ {delver.name} ({','.join(statuses)}) ------\n"
             f"    P/M: {delver.physical}/{delver.mental}, "

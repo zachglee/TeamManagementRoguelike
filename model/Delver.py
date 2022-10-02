@@ -49,10 +49,12 @@ class Delver:
 
     @property
     def recovery_morale(self):
-        recovery_morale = self.stats.recovery_morale
-        if any([delver.leader for delver in self.bonds]):
-            recovery_morale -= 1
-        return recovery_morale
+        return self.stats.recovery_morale
+        # NOTE: I am experimenting moving away from this
+        # recovery_morale = self.stats.recovery_morale
+        # if any([delver.leader for delver in self.bonds]):
+        #     recovery_morale -= 1
+        # return recovery_morale
 
     @property
     def primary_stat(self):

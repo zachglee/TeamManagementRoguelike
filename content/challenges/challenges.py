@@ -22,21 +22,21 @@ inactive_area = Challenge(
 
 marrow_bruiser = Challenge(
     "Marrow Bruiser",
-    "Deals 3 damage to leader. Overcome 7/0",
+    "Deals 3 damage to leader.",
     Ability([
         AC(target.leader, [mod_stat(3, "damage")]),
     ]),
-    9, 0,
+    10, 0,
     exhaust_overcome,
 )
 
 marrow_horror = Challenge(
     "Marrow Horror",
-    "-5 morale to leader. Overcome 2/5",
+    "-6 morale to leader.",
     Ability([
-        AC(target.leader, [mod_stat(-5, "morale")]),
+        AC(target.leader, [mod_stat(-6, "morale")]),
     ]),
-    3, 6,
+    3, 7,
     exhaust_overcome,
 )
 
@@ -52,16 +52,14 @@ marrow_hunter = Challenge(
 
 marrow_goliath = Challenge(
     "Marrow Goliath",
-    "1 damage and -1 morale to all, bonus if overcome",
+    "2 damage to all, bonus if overcome",
     Ability([
-        AC(target.all_assigned, [mod_stat(-1, "morale"), mod_stat(1, "damage")]),
-        AC(target.all_available, [mod_stat(-1, "morale"), mod_stat(1, "damage")]),
-        AC(target.leader, [mod_stat(-1, "morale"), mod_stat(1, "damage")]),
+        AC(target.all_member, [mod_stat(2, "damage")]),
     ]),
-    10, 2,
+    13, 2,
     Ability([
         AC(target.all_assigned, [exhaust]),
-        AC(target.random_assigned, [mod_stat(2, "base_physical")])
+        AC(target.all_assigned, [mod_stat(2, "base_physical")])
     ])
 )
 
@@ -69,9 +67,9 @@ abja_thief = Challenge(
     "Abja Thief",
     "Steals supplies!",
     Ability([
-        AC(target.party, [mod_resource(-7, "supplies")]),
+        AC(target.party, [mod_resource(-8, "supplies")]),
     ]),
-    5, 2,
+    5, 3,
     exhaust_overcome
 )
 
@@ -81,7 +79,7 @@ abja_trapmaster = Challenge(
     Ability([
         AC(target.random_member, [exhaust, mod_stat(1, 'damage')]),
     ]),
-    1, 6,
+    2, 6,
     exhaust_overcome,
 )
 
@@ -91,7 +89,7 @@ abja_assassin = Challenge(
     Ability([
         AC(target.random_exhausted, [mod_stat(4, 'damage')])
     ]),
-    3, 4,
+    3, 5,
     exhaust_overcome
 )
 
@@ -101,7 +99,7 @@ abja_horde = Challenge(
     Ability([
         AC(target.leader, [exhaust, mod_stat(-2, 'morale')]),
     ]),
-    6, 6,
+    8, 8,
     Ability([
         AC(target.all_assigned, [exhaust]),
         AC(target.party, [mod_resource(4, 'supplies')]),
@@ -110,21 +108,21 @@ abja_horde = Challenge(
 
 watcher_crippler = Challenge(
     "Watcher Crippler",
-    "Leader gets -2/-2.",
+    "Exhaust leader and they get -1/-1.",
     Ability([
-        AC(target.leader, [mod_stat(-2, 'base_physical'), mod_stat(-2, 'base_mental')])
+        AC(target.leader, [exhaust, mod_stat(-1, 'base_physical'), mod_stat(-1, 'base_mental')])
     ]),
-    0, 9,
+    0, 10,
     exhaust_overcome,
 )
 
 watcher_deathblade = Challenge(
     "Watcher Deathblade",
-    "Leader gets -2 durability",
+    "Exhaust leader and they get get -2 durability",
     Ability([
-        AC(target.leader, [mod_stat(-2, 'durability')])
+        AC(target.leader, [exhaust, mod_stat(-2, 'durability')])
     ]),
-    4, 5,
+    5, 5,
     exhaust_overcome
 )
 
@@ -132,9 +130,9 @@ watcher_hexmage = Challenge(
     "Watcher Hexmage",
     "Everyone loses 2 morale.",
     Ability([
-        AC(target.all_member, [mod_stat(-2, 'morale')]),
+        AC(target.all_member, [mod_stat(-3, 'morale')]),
     ]),
-    3, 6,
+    3, 7,
     exhaust_overcome
 )
 
@@ -144,7 +142,7 @@ watcher_mindcrusher = Challenge(
     Ability([
         AC(target.random_member, [set_stat(-1, "morale"), mod_stat(2, "recovery_morale")])
     ]),
-    2, 10,
+    2, 13,
     Ability([
         AC(target.all_assigned, [exhaust]),
         AC(target.random_assigned, [mod_stat(-1, 'recovery_morale')]),

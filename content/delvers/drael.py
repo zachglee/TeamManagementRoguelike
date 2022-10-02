@@ -13,7 +13,7 @@ import content.bonds as bonds
 
 bob_the_berserker = Delver(
     "Bob the Berserker",
-    DelverStats(4, 2, 0, 0, 3, 2),
+    DelverStats(5, 2, 0, 0, 4, 3),
     follower_ability=Ability([AC(target.self, [mod_pm(3, 3)])], conditions=[assigned, damaged]),
     leader_ability=Ability([AC(target.random_assigned, [mod_pm(3, 3), mod_stat(1, 'damage')])]),
     bonding_targeter=bonds.damaged,
@@ -22,24 +22,23 @@ bob_the_berserker = Delver(
 
 torv_the_blessed = Delver(
     "Torv the Blessed",
-    DelverStats(5, 2, 0, 1, 2, 3),
-    follower_ability=Ability([AC(target.self, [mod_stat(-1, 'damage')])], conditions=[available, magic]),
+    DelverStats(6, 2, 0, 1, 3, 4),
+    follower_ability=Ability([AC(target.self, [set_stat(0, 'damage')])], conditions=[available, magic]),
     leader_ability=Ability([
         AC(target.party, [mod_resource(1, 'magic')]),
         AC(target.self, [mod_stat(1, 'damage')])
-    ], conditions=[no_magic]),
+    ]),
     bonding_targeter=bonds.damaged,
     flavor="'Blood is magic, and magic is blood.'"
 )
 
 kayle_the_warcleric = Delver(
     "Kayle the Warcleric",
-    DelverStats(2, 5, 0, 1, 2, 3),
+    DelverStats(3, 5, 0, 1, 3, 4),
     follower_ability=Ability([AC(target.random_assigned, [mod_stat(-1, 'damage')])], conditions=[available]),
     leader_ability=Ability([
-        AC(target.all_exhausted, [mod_stat(-1, 'damage')]),
-        AC(target.all_available, [mod_stat(-1, 'damage')]),
         AC(target.all_assigned, [mod_stat(-1, 'damage')]),
+        AC(target.all_assigned, [mod_stat(1, "base_physical")]),
         AC(target.party, [mod_resource(-1, 'magic')]),
     ], conditions=[magic]),
     bonding_targeter=bonds.damaged,
@@ -48,11 +47,11 @@ kayle_the_warcleric = Delver(
 
 idra_the_warcaller = Delver(
     "Idra the Warcaller",
-    DelverStats(1, 5, 0, 1, 1, 2),
+    DelverStats(2, 6, 0, 1, 2, 3),
     follower_ability=Ability([AC(target.random_exhausted, [mod_stat(2, 'morale')])], conditions=[available, magic]),
     leader_ability=Ability([
-        AC(target.all_exhausted, [recover, mod_stat(2, 'morale')]),
-        AC(target.party, mod_resource(-1, 'magic'))
+        AC(target.all_member, [recover, mod_stat(2, 'morale')]),
+        AC(target.party, [mod_resource(-1, 'magic')])
     ], conditions=[magic]),
     bonding_targeter=bonds.solo_overcomer,
     flavor="'Glory in battle. Shame in retreat.'"
@@ -60,10 +59,10 @@ idra_the_warcaller = Delver(
 
 brinn_the_ritualist = Delver(
     "Brinn the Ritualist",
-    DelverStats(1, 6, 0, 0, 2, 2),
-    follower_ability=Ability([AC(target.random_exhausted, [recover, mod_stat(1, 'damage')])], conditions=[available]),
+    DelverStats(1, 7, 0, 0, 3, 3),
+    follower_ability=Ability([AC(target.random_exhausted, [recover, mod_stat(1, 'damage'), mod_stat(1, 'morale')])], conditions=[available]),
     leader_ability=Ability([
-        AC(target.random_exhausted, [recover]),
+        AC(target.random_exhausted, [recover, mod_stat(1, 'morale')]),
         AC(target.self, [mod_stat(1, 'damage')]),
     ]),
     bonding_targeter=bonds.solo_overcomer,
@@ -72,7 +71,7 @@ brinn_the_ritualist = Delver(
 
 hama_the_bladedancer = Delver(
     "Hama the Bladedancer",
-    DelverStats(7, 3, 0, 0, 2, 3),
+    DelverStats(7, 3, 0, 0, 3, 4),
     follower_ability=Ability([AC(target.self, [recover])], conditions=[exhausted, damaged]),
     leader_ability=Ability([AC(target.self, [mod_stat(2, 'morale')])], conditions=[damaged]),
     bonding_targeter=bonds.solo_overcomer,

@@ -45,6 +45,8 @@ class Game:
             delver.stats.physical = delver.stats.base_physical
             delver.stats.mental = delver.stats.base_mental
             delver.stats.recovery_morale = max(0, delver.stats.recovery_morale)
+            if delver.exhausted and any(delver.leader for delver in delver.bonds):
+                delver.stats.morale += 1
             if delver.should_exhaust():
                 delver.exhaust()
             if delver.should_inspire():

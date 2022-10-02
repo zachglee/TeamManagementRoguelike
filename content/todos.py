@@ -3,6 +3,18 @@
 # - make enemy design more spiky so that enemies really ask certain things of you
 # - make delver abilities change more between follower / leader so that choice matters more
 
+# Playtest 2:
+# - It needs to be more of an interesting choice who to assign to a challenge...
+# - Right now you basically just assign whoever whoever is good at assigning and you just keep assigning them because everyone recovers so fast
+# - The exhaust system is supposed to make it so that you have to wait a bit before you use someone again?
+# - Maybe I should say the leader bonus is that you recover 1 morale while exhausted and you're bonded to leader.
+# - Yeah lets see what that does to things?
+# - It still doesn't resolve the imbalance of some folks just really wanting to be assigned or not assigned...
+# - ...
+# - Ok that was a little better -- there was more downtime though I still had a lot of uptime bc of my build. Helen is really strong. I also rested a bunch.
+# - I should implement my branching paths idea instead of map
+# - I did use everyone as a leader at some point, except for Helen? Used rafi for magic, used jon as placeholder, used Lina to buff... never used maya though...
+
 # Playtest Notes
 # - Ok so overall having leaders that that stat boost is really good
 # - having morale engines is good. And there's only so many of those I can make

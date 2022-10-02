@@ -35,7 +35,7 @@ def mod_base_pm(base_physical, base_mental):
 def set_stat(value, stat_key):
     def effect(target_delvers):
         for delver in target_delvers:
-            delver.mod_stat(value, stat_key)
+            delver.set_stat(value, stat_key)
     return effect
 
 def exhaust(target_delvers):

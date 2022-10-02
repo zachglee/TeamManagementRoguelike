@@ -16,7 +16,7 @@ fellow_assigned = target.if_([c.assigned, c.coin_flip, c.challenge_overcome], ta
 
 # drael
 damaged = target.if_([c.coin_flip], target.random_other_damaged)
-solo_overcomer = target.if_([c.coin_flip, c.challenge_overcome, c.solo_assigned], target.random_other_assigned)
+solo_overcomer = target.if_([c.challenge_overcome, c.solo_assigned], target.random_other_assigned)
 
 # giza
 fellow_available = target.if_([c.available, c.chance_(0.25)], target.random_other_available)
