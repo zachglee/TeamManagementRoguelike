@@ -1,4 +1,5 @@
-from view.TextView import render_game_state, challenge_to_string
+import random
+from view.TextView import delver_to_string, render_game_state, challenge_to_string
 from content.targeters import choose_available, choose_assigned, choose_accessible_location
 # from utils.generation import
 from model.Party import Party
@@ -115,16 +116,19 @@ class Game:
             command_root = command_tokens[0]
             command_arguments = command_tokens[1:]
             if command_root == "recruit":
-                # TODO limit party size
-                if command_arguments == []:
-                    print(f"Must provide the # of the Delver to recruit, like `recruit 3`")
-                    continue
-                i = int(command_arguments[0]) - 1
-                available_delvers = self.game_state.starting_resources.delvers
-                chosen_delver = available_delvers.pop(i)
-                self.game_state.party.members.append(chosen_delver)
-                self.game_state.party.magic += chosen_delver.stats.magic
-                self.game_state.party.supplies += chosen_delver.stats.supplies
+                available_delvers = []
+                for _ in range(3):
+                    i = random.choice(range(0, len(self.game_state.delver_pool)))
+                    available_delvers.append(self.game_state.delver_pool.pop(i))
+                self.draft_delver(available_delvers)
+                # NOTE: Moving away from this
+                # if command_arguments == []:
+                #     print(f"Must provide the # of the Delver to recruit, like `recruit 3`")
+                #     continue
+                # i = int(command_arguments[0]) - 1
+                # available_delvers = self.game_state.starting_resources.delvers
+                # chosen_delver = available_delvers.pop(i)
+                # self.game_state.add_delver_to_party(chosen_delver)
             if command_root == "supply":
                 # TODO make sure they can't go negative on taking supply
                 if command_arguments == []:
@@ -191,6 +195,22 @@ class Game:
                 print(challenge_to_string(challenge) if challenge.revealed else "---- HIDDEN ----")
                 self.prompt()
         self.game_state.party.supplies -= len([m for m in self.game_state.party.members if not m.dead])
+
+    def draft_delver(self, delver_choices):
+        if len(delver_choices) == 0: return None
+        chosen_delver = None
+        while chosen_delver is None:
+            print(f"Choose one to recruit:")
+            for i, delver in enumerate(delver_choices):
+                print(f"{i + 1}: {delver_to_string(delver)}")
+            user_choice = input("\n Choose one by index: ")
+            if not user_choice.isnumeric():
+                print(f"Input must be a valid number.")
+                continue
+            i = int(user_choice) - 1
+            if i in range(0, len(delver_choices)):
+                chosen_delver = delver_choices[i]
+        self.game_state.add_delver_to_party(chosen_delver)
 
     # -------- M A I N   L O O P -------- #
 

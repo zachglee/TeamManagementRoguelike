@@ -1,3 +1,4 @@
+from content.targeters import _target_choice
 from model.ResourcePool import ResourcePool
 import random
 
@@ -18,7 +19,7 @@ class GameState:
         self.timestep = 0
         self.embarked = False
 
-        self.add_delvers_to_resource_pool(8)
+        # self.add_delvers_to_resource_pool(8)
 
     # -------- I D E M P O T E N T   H E L P E R S -------- #
 
@@ -59,3 +60,8 @@ class GameState:
             if len(self.delver_pool) > 0:
                 i = random.choice(range(0, len(self.delver_pool)))
                 self.starting_resources.delvers.append(self.delver_pool.pop(i))
+
+    def add_delver_to_party(self, delver):
+        self.party.members.append(delver)
+        self.party.magic += delver.stats.magic
+        self.party.supplies += delver.stats.supplies

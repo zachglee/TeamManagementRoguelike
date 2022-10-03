@@ -19,6 +19,7 @@ yuri_the_unbreakable = Delver(
     follower_ability=Ability([AC(target.self, [mod_stat(2, 'morale')])]),
     leader_ability=Ability([AC(target.self, [mod_stat(2, 'durability')])]),
     bonding_targeter=bonds.fellow_assigned,
+    flavor="'My body will not break.'"
 )
 
 yara_the_unwavering = Delver(
@@ -27,7 +28,7 @@ yara_the_unwavering = Delver(
     follower_ability=Ability([AC(target.self, [mod_stat(2, 'morale')])]),
     leader_ability=Ability([AC(target.self, [mod_stat(-1, 'recovery_morale')])]),
     bonding_targeter=bonds.fellow_assigned,
-    flavor="''"
+    flavor="'My spirit will not falter.'"
 )
 
 samiya_the_healer = Delver(
@@ -45,6 +46,7 @@ kanaan_the_survivalist = Delver(
     follower_ability=Ability([AC(target.random_damaged, [mod_stat(1, 'durability')])], conditions=[available]),
     leader_ability=Ability([AC(target.all_assigned, [mod_stat(1, 'durability')])]),
     bonding_targeter=bonds.fellow_assigned,
+    flavor="'The body can go far if the spirit is strong.'"
 )
 
 rafi_the_conjuror = Delver(
