@@ -28,6 +28,8 @@
 # - I think I still need to lean more into 
 
 # Content:
+# TODO ability where your mental becomes your physical
+# -----
 # TODO also just implement more enemies and delvers
 # TODO also another low-hanging fruit -- implement modification of challenge physical/mental
 # TODO implement status effects? Status effects are updated / happen during cleanup

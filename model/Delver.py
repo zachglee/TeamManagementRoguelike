@@ -88,7 +88,7 @@ class Delver:
                 or self.stats.damage > self.stats.durability and self.exhausted)
 
     def should_exhaust(self):
-        return not self.exhausted and self.stats.morale <= self.recovery_morale - 4
+        return not self.exhausted and self.stats.morale <= -1
 
     def should_recover(self):
         return self.exhausted and not self.dead and self.stats.morale >= self.recovery_morale

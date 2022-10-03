@@ -15,49 +15,49 @@ import content.bonds as bonds
 
 yuri_the_unbreakable = Delver(
     "Yuri the Unbreakable",
-    DelverStats(4, 3, 1, 0, 5, 3, supplies=5),
-    Ability([AC(target.random_other_available, [mod_stat(1, 'morale')])]),
-    Ability([AC(target.all_available, [mod_stat(1, 'morale')])]),
-    bonds.leader_when_endure,
+    DelverStats(4, 3, 1, 0, 3, 4, supplies=5),
+    follower_ability=Ability([AC(target.self, [mod_stat(2, 'morale')])]),
+    leader_ability=Ability([AC(target.self, [mod_stat(2, 'durability')])]),
+    bonding_targeter=bonds.fellow_assigned,
 )
 
 yara_the_unwavering = Delver(
     "Yara the Unwavering",
-    DelverStats(3, 4, 9, 0, 3, 3, supplies=5),
-    follower_ability=Ability([AC(target.random_other_available, [mod_stat(1, 'morale')])]),
-    leader_ability=Ability([AC(target.all_available, [mod_stat(1, 'morale')])]),
-    bonding_targeter=bonds.leader_when_endure,
+    DelverStats(3, 4, 6, 0, 3, 5, supplies=5),
+    follower_ability=Ability([AC(target.self, [mod_stat(2, 'morale')])]),
+    leader_ability=Ability([AC(target.self, [mod_stat(-1, 'recovery_morale')])]),
+    bonding_targeter=bonds.fellow_assigned,
     flavor="''"
 )
 
 samiya_the_healer = Delver(
     "Samiya the Healer",
-    DelverStats(1, 6, 1, 0, 2, 3),
+    DelverStats(1, 6, 1, 0, 2, 4),
     follower_ability=Ability([AC(target.random_damaged, [mod_stat(-1, 'damage')])], conditions=[available]),
     leader_ability=Ability([AC(target.random_damaged, [set_stat(0, 'damage'), set_stat(2, 'morale')])]),
-    bonding_targeter=bonds.leader_when_endure,
+    bonding_targeter=bonds.fellow_assigned,
     flavor="'Rest now, my child. Let your wounds heal.'"
 )
 
 kanaan_the_survivalist = Delver(
     "Kanaan the Survivalist",
-    DelverStats(5, 2, 1, 0, 4, 3),
+    DelverStats(5, 2, 1, 0, 4, 4),
     follower_ability=Ability([AC(target.random_damaged, [mod_stat(1, 'durability')])], conditions=[available]),
-    leader_ability=Ability([AC(target.all_damaged, [mod_stat(1, 'durability')])]),
-    bonding_targeter=bonds.fellow_available,
+    leader_ability=Ability([AC(target.all_assigned, [mod_stat(1, 'durability')])]),
+    bonding_targeter=bonds.fellow_assigned,
 )
 
 rafi_the_conjuror = Delver(
     "Rafi the Conjuror",
-    DelverStats(0, 7, 1, 0, 2, 3),
-    Ability([AC(target.party, [mod_resource(1, 'magic')])], conditions=[available, chance_(0.5)]),
-    Ability([AC(target.party, [mod_resource(-1, 'magic'), mod_resource(5, 'supplies')])], conditions=[magic]),
-    bonds.fellow_available,
+    DelverStats(0, 7, 1, 0, 2, 4),
+    follower_ability=Ability([AC(target.party, [mod_resource(1, 'magic')])], conditions=[available, chance_(0.5)]),
+    leader_ability=Ability([AC(target.party, [mod_resource(-1, 'magic'), mod_resource(5, 'supplies')])], conditions=[magic]),
+    bonding_targeter=bonds.fellow_assigned,
 )
 
 maya_the_scavenger = Delver(
     "Maya the Scavenger",
-    DelverStats(3, 3, 1, 0, 2, 3),
+    DelverStats(3, 3, 1, 0, 2, 4),
     follower_ability=Ability([
         AC(target.party, [mod_resource(2, 'supplies')])
     ], conditions=[available]),
@@ -65,7 +65,7 @@ maya_the_scavenger = Delver(
         AC(target.random_available, [exhaust]),
         AC(target.party, [mod_resource(6, 'supplies')])
     ]),
-    bonding_targeter=bonds.fellow_available,
+    bonding_targeter=bonds.fellow_assigned,
     flavor="'I found something!'"
 )
 

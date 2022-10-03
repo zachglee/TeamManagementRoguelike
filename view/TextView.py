@@ -12,9 +12,9 @@ class bcolors:
 
 def delver_to_string(delver):
     statuses = []
-    if delver.leader: statuses.append(f"{bcolors.GREEN}Leader{bcolors.ENDC}       ")
-    if delver.exhausted: statuses.append(f"{bcolors.RED}Exhausted{bcolors.ENDC}       ")
-    if delver.assigned: statuses.append(f"{bcolors.YELLOW}Assigned{bcolors.ENDC}       ")
+    if delver.leader: statuses.append(f"{bcolors.GREEN}Leader{bcolors.ENDC}")
+    if delver.exhausted: statuses.append(f"{bcolors.RED}Exhausted{bcolors.ENDC}")
+    if delver.assigned: statuses.append(f"{bcolors.YELLOW}Assigned{bcolors.ENDC}")
     if delver.dead: statuses.append("DEAD")
     return (f"  ------ {delver.name} ({','.join(statuses)}) ------\n"
             f"    P/M: {delver.physical}/{delver.mental}, "

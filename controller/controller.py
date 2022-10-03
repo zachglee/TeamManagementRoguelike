@@ -49,8 +49,10 @@ class Game:
                 delver.stats.morale += 1
             if delver.should_exhaust():
                 delver.exhaust()
-            if delver.should_inspire():
-                delver.recover(morale_cost=delver.recovery_morale * 2)
+            # NOTE: Trying ou moving away from inspire, since it dilutes the uniqueness of resting
+            # as the time where you can get back exhausted delvers
+            # if delver.should_inspire():
+            #     delver.recover(morale_cost=delver.recovery_morale * 2)
             if delver.should_die():
                 delver.die()
 
